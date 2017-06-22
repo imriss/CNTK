@@ -44,19 +44,19 @@ WORKDIR /cntk
 
 # Build CNTK
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
-    CONFIGURE_OPTS="\
-      --with-kaldi=${KALDI_PATH} \
-      --with-py35-path=/root/anaconda3/envs/cntk-py35" && \
+    CONFIGURE_OPTS="" && \
     git submodule update --init Source/Multiverso && \
-    mkdir -p build/cpu/release && \
-    cd build/cpu/release && \
-    ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/local/openblas && \
-    make -j"$(nproc)" all && \
-    cd ../../.. && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
-    make -j"$(nproc)" all
+    make -j"$(nproc)" all && \
+    cd ../../.. && \    
+    mkdir -p build/cpu/release && \
+    cd build/cpu/release && \
+    ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/local/openblas && \
+    make -j"$(nproc)" all 
+
+
 
 RUN cd Examples/Image/DataSets/CIFAR-10 && \
     python install_cifar10.py && \
