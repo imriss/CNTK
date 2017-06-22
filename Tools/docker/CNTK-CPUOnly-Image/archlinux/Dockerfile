@@ -46,6 +46,8 @@ WORKDIR /cntk
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     CONFIGURE_OPTS="" && \
     git submodule update --init Source/Multiverso && \
+    sed -i "s,libprotobuf.a,libprotobuf.so,g" Makefile && \ 
+    sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \     
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
