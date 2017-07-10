@@ -51,7 +51,7 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     sed -i "s,    template CNTK_API const float\* NDArrayView::DataBuffer,    "\
 "template CNTK_API const TensorView<float>* NDArrayView::GetTensorView<float>() "\
 "const;"$"\n    template CNTK_API const TensorView<double>* NDArrayView::GetTensorView<double>() "\
-"const;"$"\n\n    template CNTK_API const float\* NDArrayView::DataBuffer,g" Source/CNTKv2LibraryDll/NDArrayView.cpp \
+"const;"$"\n\n    template CNTK_API const float\* NDArrayView::DataBuffer,g" Source/CNTKv2LibraryDll/NDArrayView.cpp && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
