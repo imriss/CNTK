@@ -12,10 +12,8 @@ LABEL description="CNTK CPUOnly / Arch Linux"
 RUN  pacman -Syyu --noconfirm && \
   pacman -S findutils nano vi --needed --noconfirm && \
   pacman-db-upgrade && \
-  pacman -S --needed --noconfirm systemd
-  
-RUN  export editor=nano && \
-  pacman -S --needed --noconfirm python python-yaml wget python-pip openssh git curl jq && \
+  export editor=nano && \
+  pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq && \
   pip install --upgrade pip && \
   pip install simplejson
 
