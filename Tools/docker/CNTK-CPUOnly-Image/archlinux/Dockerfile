@@ -25,7 +25,7 @@ RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
 RUN add-aur docker
 
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm base-devel gcc-fortran expect cmake \
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm base-devel gcc gcc-fortran expect cmake \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi libzip opencv blas boost boost-libs swig '
 
