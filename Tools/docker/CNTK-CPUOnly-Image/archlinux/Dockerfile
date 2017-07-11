@@ -46,6 +46,10 @@ WORKDIR /cntk
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     CONFIGURE_OPTS="" && \
     git submodule update --init Source/Multiverso && \
+    git submodule sync --recursive && \
+    git submodule update --init --recursive && \
+    git submodule sync --recursive && \
+    git submodule update --init --recursive && \
     sed -i "s,libprotobuf.a,libprotobuf.so,g" Makefile && \ 
     sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \
     sed -i "s,    template CNTK_API const float\* NDArrayView::DataBuffer,    "\
