@@ -13,7 +13,7 @@ RUN  pacman -Syyu --noconfirm && \
   pacman -S findutils nano vi --needed --noconfirm && \
   pacman-db-upgrade && \
   export editor=nano && \
-  pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq && \
+  pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl && \
   pip install --upgrade pip && \
   pip install simplejson
 
