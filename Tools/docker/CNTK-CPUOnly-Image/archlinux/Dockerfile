@@ -13,7 +13,7 @@ RUN  pacman -Syyu --noconfirm && \
   pacman -S findutils nano vi --needed --noconfirm && \
   pacman-db-upgrade && \
   export editor=nano && \
-  pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl && \
+  pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac && \
   pip install --upgrade pip && \
   pip install simplejson
 
@@ -23,7 +23,8 @@ ADD ./aur.sh /usr/sbin/aur.sh
 ADD ./add-aur.sh /usr/sbin/add-aur
 RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
-RUN add-aur docker
+RUN export "PATH=/usr/bin/core_perl:$PATH" && \
+  add-aur docker
 
 RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm base-devel gcc gcc-fortran expect cmake \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
