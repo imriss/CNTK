@@ -26,7 +26,7 @@ RUN chmod u+x /usr/sbin/add-aur
 RUN export "PATH=/usr/bin/core_perl:$PATH" && \
   add-aur docker
 
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm base-devel gcc gcc-fortran expect cmake \
+RUN su --preserve-environment docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm base-devel gcc gcc-fortran expect cmake \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi libzip opencv blas boost boost-libs swig '
 
