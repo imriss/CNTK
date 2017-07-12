@@ -63,7 +63,7 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     cd ../../.. && \    
     mkdir -p build/cpu/release && \
     cd build/cpu/release && \
-    ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/local/openblas && \
+    ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/pkgs/openblas-0.2.19-2 && \
     make -j"$(nproc)" all 
 
 RUN cd Examples/Image/DataSets/CIFAR-10 && \
