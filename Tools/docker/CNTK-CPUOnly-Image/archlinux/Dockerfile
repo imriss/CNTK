@@ -1,11 +1,8 @@
 # CNTK Dockerfile
 #   CPU only
 #   No 1-bit SGD
-
 FROM imriss/archlinux
-
 RUN echo 'CNTK CPUOnly on Arch Linux'
-
 MAINTAINER Reza Farrahi <imriss@ieee.org>
 LABEL description="CNTK CPUOnly / Arch Linux"
 
@@ -17,10 +14,6 @@ RUN  pacman -Syyu --noconfirm && \
   gcc gcc-libs clang && \
   pip install --upgrade pip && \
   pip install simplejson
-  
-RUN pacman -Syyu --noconfirm 
-
-RUN stop
 
 # DDADD https://raw.githubusercontent.com/imriss/scylla/master/aur.sh /usr/sbin/aur.sh
 # DDADD https://raw.githubusercontent.com/imriss/scylla/master/add-aur.sh /usr/sbin/add-aur
@@ -71,8 +64,6 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     cd build/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/local/openblas && \
     make -j"$(nproc)" all 
-
-
 
 RUN cd Examples/Image/DataSets/CIFAR-10 && \
     python install_cifar10.py && \
