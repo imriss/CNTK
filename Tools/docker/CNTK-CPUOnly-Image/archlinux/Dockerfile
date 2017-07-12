@@ -13,7 +13,8 @@ RUN  pacman -Syyu --noconfirm && \
   pacman -S findutils nano vi --noconfirm && \
   pacman-db-upgrade && \
   export editor=nano && \
-  pacman -S --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac && \
+  pacman -S --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac \
+  gcc ggc-libs gcc-fortran && \
   pip install --upgrade pip && \
   pip install simplejson
 
@@ -26,9 +27,9 @@ RUN chmod u+x /usr/sbin/add-aur
 RUN export "PATH=/usr/bin/core_perl:$PATH" && \
   add-aur docker
 
-RUN su --preserve-environment docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel gcc gcc-fortran expect cmake \
+RUN su --preserve-environment docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
-    subversion apr apr-util serf m4 jdk7-openjdk openmpi libzip opencv blas boost boost-libs swig '
+    subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv blas boost boost-libs swig '
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
