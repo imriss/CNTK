@@ -20,6 +20,8 @@ RUN  pacman -Syyu --noconfirm && \
   
 RUN pacman -Syyu --noconfirm 
 
+RUN stop
+
 # DDADD https://raw.githubusercontent.com/imriss/scylla/master/aur.sh /usr/sbin/aur.sh
 # DDADD https://raw.githubusercontent.com/imriss/scylla/master/add-aur.sh /usr/sbin/add-aur
 ADD ./aur.sh /usr/sbin/aur.sh
