@@ -14,7 +14,7 @@ RUN  pacman -Syyu --noconfirm && \
   pacman-db-upgrade && \
   export editor=nano && \
   pacman -S --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac \
-  gcc gcc-libs && \
+  gcc gcc-libs clang && \
   pip install --upgrade pip && \
   pip install simplejson
   
