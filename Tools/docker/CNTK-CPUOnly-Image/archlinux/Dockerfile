@@ -51,6 +51,7 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     git submodule update --init --recursive && \
     sed -i "s,libprotobuf.a,libprotobuf.so,g" Makefile && \ 
     sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \
+    sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \
     sed -i "s,    template CNTK_API const float\* NDArrayView::DataBuffer,    "\
 "template CNTK_API const TensorView<float>* NDArrayView::GetTensorView<float>() "\
 "const;"$"\n    template CNTK_API const TensorView<double>* NDArrayView::GetTensorView<double>() "\
