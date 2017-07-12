@@ -59,20 +59,20 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
-    make -j"$(nproc)" all && \
-    cd ../../.. && \    
-    mkdir -p build/cpu/release && \
-    cd build/cpu/release && \
-    ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/pkgs/openblas-0.2.19-2 && \
-    make -j"$(nproc)" all 
+    make -j"$(nproc)" all # && \
+    # cd ../../.. && \    
+    # mkdir -p build/cpu/release && \
+    # cd build/cpu/release && \
+    # ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/pkgs/openblas-0.2.19-2 && \
+    # make -j"$(nproc)" all 
 
-RUN cd Examples/Image/DataSets/CIFAR-10 && \
-    python install_cifar10.py && \
-    cd ../../../..
+# RUN cd Examples/Image/DataSets/CIFAR-10 && \
+    # python install_cifar10.py && \
+    # cd ../../../..
 
-RUN cd Examples/Image/DataSets/MNIST && \
-    python install_mnist.py && \
-    cd ../../../..
+# RUN cd Examples/Image/DataSets/MNIST && \
+    # python install_mnist.py && \
+    # cd ../../../..
 
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
