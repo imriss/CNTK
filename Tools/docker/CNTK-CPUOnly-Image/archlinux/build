@@ -1,2 +1,2 @@
 
-sudo docker build --tag imriss/cntk_archlinux:v2 .
+sudo docker build --tag imriss/cntk_cpu_archlinux:v2 .
