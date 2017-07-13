@@ -42,8 +42,7 @@ RUN CNTK_CUSTOM_MKL_VERSION=3 && \
 
 RUN wget -q https://raw.githubusercontent.com/Microsoft/CNTK/master/Scripts/install/linux/conda-linux-cntk-py35-environment.yml -O /tmp/conda-linux-cntk-py35-environment.yml && \
     /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py35/ --file /tmp/conda-linux-cntk-py35-environment.yml
-
-ENV PATH /root/anaconda3/envs/cntk-py35/bin:$PATH
+ENV PATH /opt/anaconda/envs/cntk-py35/bin:$PATH
 
 WORKDIR /cntk
 
