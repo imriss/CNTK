@@ -40,7 +40,7 @@ RUN CNTK_CUSTOM_MKL_VERSION=3 && \
     wget --no-verbose -O - https://www.cntk.ai/mkl/CNTKCustomMKL-Linux-$CNTK_CUSTOM_MKL_VERSION.tgz | \
     tar -xzf - -C /usr/local/CNTKCustomMKL
 
-RUN cp /cntk/Scripts/install/linux/conda-linux-cntk-py36-environment.yml /tmp/conda-linux-cntk-py36-environment.yml && \
+RUN cp /cntk/Scripts/install/linux/conda-linux-cntk-py36-environment.yml /tmp/ && \
     /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py36/ --file /tmp/conda-linux-cntk-py36-environment.yml
 ENV PATH /opt/anaconda/envs/cntk-py36/bin:$PATH
 
