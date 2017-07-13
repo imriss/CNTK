@@ -26,7 +26,8 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
-    subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv blas boost boost-libs swig '
+    subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv blas boost boost-libs swig \
+    anaconda '
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
@@ -38,6 +39,11 @@ RUN CNTK_CUSTOM_MKL_VERSION=3 && \
     mkdir /usr/local/CNTKCustomMKL && \
     wget --no-verbose -O - https://www.cntk.ai/mkl/CNTKCustomMKL-Linux-$CNTK_CUSTOM_MKL_VERSION.tgz | \
     tar -xzf - -C /usr/local/CNTKCustomMKL
+
+RUN wget -q https://raw.githubusercontent.com/Microsoft/CNTK/master/Scripts/install/linux/conda-linux-cntk-py35-environment.yml -O /tmp/conda-linux-cntk-py35-environment.yml && \
+    /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py35/ --file /tmp/conda-linux-cntk-py35-environment.yml
+
+ENV PATH /root/anaconda3/envs/cntk-py35/bin:$PATH
 
 WORKDIR /cntk
 
