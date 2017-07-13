@@ -48,7 +48,10 @@ WORKDIR /cntk
 
 # Build CNTK
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
-    CONFIGURE_OPTS="" && \
+    cp /cntk/Scripts/install/linux/conda-linux-cntk-py36-environment.yml /tmp/ && \
+    /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py36/ --file /tmp/conda-linux-cntk-py36-environment.yml 
+ENV PATH /opt/anaconda/envs/cntk-py36/bin:$PATH
+RUN CONFIGURE_OPTS="" && \
     git submodule update --init Source/Multiverso && \
     git submodule sync --recursive && \
     git submodule update --init --recursive && \
