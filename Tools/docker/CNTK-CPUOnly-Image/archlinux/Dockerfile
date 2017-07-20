@@ -85,5 +85,5 @@ RUN pacman -Scc --noconfirm && \
   rm -rd /home/docker/sandground && \
   echo `du /usr/lib -hd 1`
 
-ENV PATH=/cntk/build/cpu/release/bin:$PATH PYTHONPATH=/cntk/bindings/python LD_LIBRARY_PATH=/cntk/bindings/python/cntk/libs:$LD_LIBRARY_PATH
+ENV PATH=/cntk/build-mkl/cpu/release/bin:$PATH PYTHONPATH=/cntk/bindings/python LD_LIBRARY_PATH=/cntk/bindings/python/cntk/libs:$LD_LIBRARY_PATH
 CMD ["source", "/cntk/activate-cntk"]
