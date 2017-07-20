@@ -41,7 +41,7 @@ RUN CNTK_CUSTOM_MKL_VERSION=3 && \
     tar -xzf - -C /usr/local/CNTKCustomMKL
 
 WORKDIR /cntk
-ADD activate-cntk .
+ADD activate-cntk ./activate-cntk
 
 # Build CNTK
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
