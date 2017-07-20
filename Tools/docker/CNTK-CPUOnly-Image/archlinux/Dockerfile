@@ -86,3 +86,4 @@ RUN pacman -Scc --noconfirm && \
   echo `du /usr/lib -hd 1`
 
 ENV PATH=/cntk/build/cpu/release/bin:$PATH PYTHONPATH=/cntk/bindings/python LD_LIBRARY_PATH=/cntk/bindings/python/cntk/libs:$LD_LIBRARY_PATH
+CMD ["source", "/cntk/activate-cntk"]
