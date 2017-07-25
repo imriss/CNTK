@@ -56,11 +56,11 @@ RUN CONFIGURE_OPTS="" && \
     git submodule update --init --recursive && \
     sed -i "s,libprotobuf.a,libprotobuf.so,g" Makefile && \ 
     sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \
-    sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \ # pull/2103
+    sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \ 
     # sed -i "s,    template CNTK_API const float\* NDArrayView::DataBuffer,    "\
 # "template CNTK_API const TensorView<float>* NDArrayView::GetTensorView<float>() "\
 # "const;"$"\n    template CNTK_API const TensorView<double>* NDArrayView::GetTensorView<double>() "\
-# "const;"$"\n\n    template CNTK_API const float\* NDArrayView::DataBuffer,g" Source/CNTKv2LibraryDll/NDArrayView.cpp && \ # pull/2104
+# "const;"$"\n\n    template CNTK_API const float\* NDArrayView::DataBuffer,g" Source/CNTKv2LibraryDll/NDArrayView.cpp && \ 
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
