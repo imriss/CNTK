@@ -27,7 +27,7 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv blas boost boost-libs swig \
-    anaconda '
+    anaconda swig '
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
@@ -78,6 +78,10 @@ RUN CONFIGURE_OPTS="" && \
 # RUN cd Examples/Image/DataSets/MNIST && \
     # python install_mnist.py && \
     # cd ../../../..
+
+RUN export CNTK_COMPONENT_VERSION=2.0 && \
+  cd /cntk/bindings/python && \
+  python .\setup.py build_ext --inplace --force 
 
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
