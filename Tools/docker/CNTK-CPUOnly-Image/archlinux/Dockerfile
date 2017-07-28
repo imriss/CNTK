@@ -48,7 +48,7 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py36/ --file /tmp/conda-linux-cntk-py36-environment.yml 
 ENV PATH /opt/anaconda/envs/cntk-py36/bin:$PATH
 ADD activate-cntk ./activate-cntk
-RUN CONFIGURE_OPTS="" && \
+RUN CONFIGURE_OPTS="--with-py35-path=/opt/anaconda/envs/cntk-py36" && \
     git submodule update --init Source/Multiverso && \
     git submodule sync --recursive && \
     git submodule update --init --recursive && \
@@ -68,17 +68,17 @@ RUN CONFIGURE_OPTS="" && \
     # ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/pkgs/openblas-0.2.19-2 && \
     # make -j"$(nproc)" all 
 
-# RUN cd Examples/Image/DataSets/CIFAR-10 && \
-    # python install_cifar10.py && \
-    # cd ../../../..
+RUN cd Examples/Image/DataSets/CIFAR-10 && \
+    python install_cifar10.py && \
+    cd ../../../..
 
-# RUN cd Examples/Image/DataSets/MNIST && \
-    # python install_mnist.py && \
-    # cd ../../../..
+RUN cd Examples/Image/DataSets/MNIST && \
+    python install_mnist.py && \
+    cd ../../../..
 
-RUN export CNTK_COMPONENT_VERSION=2.0 && \
-  cd /cntk/bindings/python && \
-  python ./setup.py build_ext --inplace --force 
+# RUN export CNTK_COMPONENT_VERSION=2.0 && \
+  # cd /cntk/bindings/python && \
+  # python ./setup.py build_ext --inplace --force 
 
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
