@@ -44,11 +44,11 @@ WORKDIR /cntk
 
 # Build CNTK
 RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
-    cp /cntk/Scripts/install/linux/conda-linux-cntk-py35-environment.yml /tmp/ && \
-    /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py35/ --file /tmp/conda-linux-cntk-py35-environment.yml 
-ENV PATH /opt/anaconda/envs/cntk-py35/bin:$PATH
+    cp /cntk/Scripts/install/linux/conda-linux-cntk-py36-environment.yml /tmp/ && \
+    /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py36/ --file /tmp/conda-linux-cntk-py36-environment.yml 
+ENV PATH /opt/anaconda/envs/cntk-py36/bin:$PATH
 ADD activate-cntk ./activate-cntk
-RUN CONFIGURE_OPTS="--with-py35-path=/opt/anaconda/envs/cntk-py35" && \
+RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     git submodule update --init Source/Multiverso && \
     git submodule sync --recursive && \
     git submodule update --init --recursive && \
@@ -56,7 +56,8 @@ RUN CONFIGURE_OPTS="--with-py35-path=/opt/anaconda/envs/cntk-py35" && \
     git submodule update --init --recursive && \
     sed -i "s,libprotobuf.a,libprotobuf.so,g" Makefile && \ 
     sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \
-    sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \ 
+    sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \
+    sed -i "s,libmpi.so.12,libmpi.so,g" bindings/python/cntk/train/distributed.py && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
