@@ -27,7 +27,9 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
-    anaconda swig kaldi '
+    anaconda swig '
+    
+RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
