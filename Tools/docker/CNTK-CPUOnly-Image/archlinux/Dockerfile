@@ -84,7 +84,8 @@ RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
   paccache -rf && \
-  rm -rd /home/docker/* && \
+  rm -rd /home/docker/sandground && \
+  rm -rd /home/docker/.cache && \
   rm -rd /opt/anaconda/lib && \
   rm -rd /opt/anaconda/pkgs && \
   rm -rd /cntk/build-mkl/cpu/release/.build && \
