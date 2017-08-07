@@ -69,13 +69,13 @@ RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     # ../../../configure $CONFIGURE_OPTS --with-openblas=/usr/pkgs/openblas-0.2.19-2 && \
     # make -j"$(nproc)" all 
 
-RUN cd Examples/Image/DataSets/CIFAR-10 && \
-    python install_cifar10.py && \
-    cd ../../../..
+# RUN cd Examples/Image/DataSets/CIFAR-10 && \
+#     python install_cifar10.py && \
+#     cd ../../../..
 
-RUN cd Examples/Image/DataSets/MNIST && \
-    python install_mnist.py && \
-    cd ../../../..
+# RUN cd Examples/Image/DataSets/MNIST && \
+#    python install_mnist.py && \
+#    cd ../../../..
 
 # RUN export CNTK_COMPONENT_VERSION=2.0 && \
   # cd /cntk/bindings/python && \
