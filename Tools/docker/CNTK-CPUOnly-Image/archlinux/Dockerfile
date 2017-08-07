@@ -86,6 +86,7 @@ RUN pacman -Scc --noconfirm && \
   paccache -rf && \
   rm -rd /home/docker/* && \
   rm -rd /opt/anaconda/lib && \
+  rm -rd /opt/anaconda/pkgs && \
   rm -rd /cntk/build-mkl/cpu/release/.build && \
   echo `du /usr/lib -hd 1`
 
