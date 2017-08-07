@@ -26,8 +26,8 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
-    subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv blas boost boost-libs swig \
-    anaconda swig '
+    subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
+    anaconda swig kaldi '
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
@@ -48,7 +48,8 @@ RUN git clone --depth=1 -b master https://github.com/Microsoft/CNTK.git . && \
     /opt/anaconda/bin/conda env create -p /opt/anaconda/envs/cntk-py36/ --file /tmp/conda-linux-cntk-py36-environment.yml 
 ENV PATH /opt/anaconda/envs/cntk-py36/bin:$PATH
 ADD activate-cntk ./activate-cntk
-RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
+RUN CONFIGURE_OPTS="--with-kaldi=/opt/kaldi \
+    --with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     git submodule update --init Source/Multiverso && \
     git submodule sync --recursive && \
     git submodule update --init --recursive && \
