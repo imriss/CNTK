@@ -84,7 +84,9 @@ RUN cd Examples/Image/DataSets/MNIST && \
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
   paccache -rf && \
-  rm -rd /home/docker/sandground && \
+  rm -rd /home/docker && \
+  rm -rd /opt/anaconda/lib && \
+  rm -rd /cntk/build-mkl/cpu/release/.build && \
   echo `du /usr/lib -hd 1`
 
 ENV PATH=/cntk/build-mkl/cpu/release/bin:$PATH PYTHONPATH=/cntk/bindings/python LD_LIBRARY_PATH=/cntk/bindings/python/cntk/libs:$LD_LIBRARY_PATH
