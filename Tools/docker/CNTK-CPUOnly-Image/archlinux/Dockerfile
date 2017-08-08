@@ -37,6 +37,7 @@ RUN cd /home/docker/sandground && \
     sed -i "s,cd $srcdir/$pkgname/tools,export CXXFLAGS="$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//')" \
     "$"\n        cd $srcdir/$pkgname/tools,g" PKGBUILD && \
     su docker -c 'makepkg -si'; exit 0 && \
+    echo `ls -la /home/docker/sandground/kaldi` && \
     echo `find /home/docker/sandground -name "config.log"`
     
 RUN Stop
