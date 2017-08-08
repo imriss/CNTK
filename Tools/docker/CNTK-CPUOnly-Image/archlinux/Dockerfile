@@ -40,6 +40,9 @@ RUN cd /home/docker/sandground && \
     echo `ls -la /home/docker/sandground/kaldi` && \
     echo `find /home/docker/sandground -name "config.log"`
     
+RUN echo `ls -la /home/docker/sandground/kaldi` && \
+    echo `find /home/docker/sandground -name "config.log"
+    
 RUN Stop
 
 # ENV PATH /usr/local/mpi/bin:$PATH
