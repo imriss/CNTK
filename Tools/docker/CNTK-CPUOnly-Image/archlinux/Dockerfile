@@ -38,7 +38,7 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
     sed -i "s,cd \$srcdir\/\$pkgname\/tools,export CXXFLAGS=\$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//') \
     "$"\n        cd \$srcdir\/\$pkgname\/tools,g" PKGBUILD && \
     su docker -c 'makepkg -si' && \
-    pacman -U kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
+    pacman -U --noconfirm kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
     
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
