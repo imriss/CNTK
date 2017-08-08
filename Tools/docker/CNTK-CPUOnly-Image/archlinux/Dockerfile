@@ -31,6 +31,15 @@ RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expe
     
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
 
+# 
+RUN cd /home/docker && \
+    mkdir sandground && cd sandground && \
+    mkdir kaldi && cd kaldi && \
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && tar -xvf kaldi.tar.gz && cd kaldi && \
+    sed -i "s,cd $srcdir/$pkgname/tools,export CXXFLAGS="$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//')" \
+    "$"\n        cd $srcdir/$pkgname/tools,g" PKGBUILD && \
+    su docker -c 'makepkg -si '
+
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
