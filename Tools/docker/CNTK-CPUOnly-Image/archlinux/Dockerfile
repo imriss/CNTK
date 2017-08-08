@@ -39,7 +39,7 @@ RUN cd /home/docker/sandground && \
     su docker -c 'makepkg -si' && \
     find /home/docker/sandground -name "config.log"
     
-Stop
+RUN Stop
 
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
