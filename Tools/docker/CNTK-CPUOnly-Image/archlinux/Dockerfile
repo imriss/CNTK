@@ -29,9 +29,8 @@ RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expe
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
     anaconda swig gcc5 '
     
-RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
+# RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
 
-# 
 RUN cd /home/docker && \
     mkdir sandground && cd sandground && \
     mkdir kaldi && cd kaldi && \
