@@ -36,7 +36,7 @@ RUN cd /home/docker/sandground && \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && su docker -c 'tar -xvf kaldi.tar.gz' && cd kaldi && \
     sed -i "s,cd $srcdir/$pkgname/tools,export CXXFLAGS="$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//')" \
     "$"\n        cd $srcdir/$pkgname/tools,g" PKGBUILD && \
-    su docker -c 'makepkg -si' && \
+    su docker -c 'makepkg -si'; exit 0 && \
     find /home/docker/sandground -name "config.log"
     
 RUN Stop
