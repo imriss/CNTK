@@ -35,8 +35,8 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
     cd /home/docker/sandground && \
     su docker -c 'mkdir kaldi' && cd kaldi && echo `ls -la` && \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && su docker -c 'tar -xvf kaldi.tar.gz' && cd kaldi && \
-    sed -i "s,cd $srcdir/$pkgname/tools,export CXXFLAGS='$(printf '%s' '$CXXFLAGS' | sed 's/-fno-plt//')' \
-    "$"\n        cd $srcdir/$pkgname/tools,g" PKGBUILD && \
+    sed -i "s,cd \$srcdir\/\$pkgname\/tools,export CXXFLAGS=\$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//') \
+    "$"\n        cd \$srcdir\/\$pkgname\/tools,g" PKGBUILD && \
     su docker -c 'makepkg -si'; exit 0 && \
     echo `ls -la /home/docker/sandground/kaldi` && \
     echo `find /home/docker/sandground -name 'config.log'`
