@@ -44,7 +44,8 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 RUN echo `ls -la /home/docker/sandground/kaldi` && \
     echo `find /home/docker/sandground -name 'config.log'` && \
     echo `cat /home/docker/sandground/kaldi/kaldi/src/kaldi/tools/openfst-1.6.2/config.log` && \
-    echo `cat /home/docker/sandground/kaldi/kaldi/src/kaldi/tools/sctk-2.4.10/src/asclite/core/config.log`
+    echo `cat /home/docker/sandground/kaldi/kaldi/src/kaldi/tools/sctk-2.4.10/src/asclite/core/config.log` && \
+    echo `cat /home/docker/sandground/kaldi/kaldi/PKGBUILD`
     
     
 RUN Stop
