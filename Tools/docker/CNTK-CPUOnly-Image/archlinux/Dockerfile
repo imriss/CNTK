@@ -37,6 +37,13 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && su docker -c 'tar -xvf kaldi.tar.gz' && cd kaldi && \
     sed -i "s,cd \$srcdir\/\$pkgname\/tools,export CXXFLAGS=\$(printf '%s' "$CXXFLAGS" | sed 's/-fno-plt//') \
     "$"\n        cd \$srcdir\/\$pkgname\/tools,g" PKGBUILD && \
+    sed -i "s,cd \$srcdir\/\$pkgname,cd \$srcdir\/\$pkgnamefull,g" PKGBUILD && \
+    sed -i "s,cd \"\${pkgname}\",cd \"\${pkgnamefull}\",g" PKGBUILD && \
+    sed -i "s,pkgname='kaldi',pkgname='kaldi'\
+    "$"\npkgnamefull='kaldi-c024e8aa0a727bf76c91a318f76a1f8b0b59249e'\
+    "$"\nKALDI_VERSION='c024e8aa',g" PKGBUILD && \
+    sed -i "s,source=(\"\${pkgname}::git+\${url}\",\
+source=(\"https:\/\/github.com\/kaldi-asr\/kaldi\/archive\/\$KALDI_VERSION.tar.gz\",g" PKGBUILD && \
     su docker -c 'makepkg -si' && \
     pacman -U --noconfirm kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
     
