@@ -45,7 +45,7 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
     sed -i "s,source=(\"\${pkgname}::git+\${url}\",\
 source=(\"https:\/\/github.com\/kaldi-asr\/kaldi\/archive\/\$KALDI_VERSION.tar.gz\",g" PKGBUILD && \
   sed -i 's~check_dependencies\.sh~check_dependencies\.sh\n        sed -i "s,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk\\ \
-\\n find \. -type f | xargs sed -i  \\'\''s\/-fno-plt\/\/\\'\'',g" Makefile~g' PKGBUILD && \
+\\n\\tfind \. -type f | xargs sed -i  \\'\''s\/-fno-plt\/\/\\'\'',g" Makefile~g' PKGBUILD && \
     su docker -c 'makepkg -si' && \
     pacman -U --noconfirm kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
     
