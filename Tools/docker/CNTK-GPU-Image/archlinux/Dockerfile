@@ -73,7 +73,7 @@ RUN CONFIGURE_OPTS="\
     --with-cuda=/opt/cuda \
     --with-gdk-include=/opt/cuda/include \
     --with-gdk-nvml-lib=/opt/cuda/lib64/stubs \
-    --with-cudnn=/opt/cuda/include \
+    --with-cudnn=/opt \
     --with-nccl=/opt/cuda/include && \
     --with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     git submodule update --init Source/Multiverso && \
