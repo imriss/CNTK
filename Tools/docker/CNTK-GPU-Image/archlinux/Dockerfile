@@ -27,7 +27,7 @@ RUN export "PATH=/usr/bin/core_perl:$PATH" && \
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
-    anaconda swig gcc5 cuda cudnn nccl ' && \
+    anaconda swig gcc5 cuda cudnn cudnn6 nccl ' && \
     su docker -c 'cd /home/docker/sandground; bash /usr/sbin/aur.sh -si --noconfirm --needed cub'
     
 # RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
