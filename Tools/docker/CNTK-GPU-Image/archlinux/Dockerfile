@@ -104,9 +104,9 @@ RUN CONFIGURE_OPTS="\
 #    python install_mnist.py && \
 #    cd ../../../..
 
-# RUN export CNTK_COMPONENT_VERSION=2.0 && \
-  # cd /cntk/bindings/python && \
-  # python ./setup.py build_ext --inplace --force 
+RUN export CNTK_COMPONENT_VERSION=2.1 && \
+  cd /cntk/bindings/python && \
+  python ./setup.py build_ext --inplace --force 
 
 RUN pacman -Scc --noconfirm && \
   rm /var/cache/pacman/pkg/* && \
