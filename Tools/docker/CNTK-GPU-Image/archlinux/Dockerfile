@@ -28,7 +28,7 @@ RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm --needed base-d
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
     anaconda swig gcc5 cuda cudnn ' && \
-    su docker -c 'cd /home/docker/sandground; bash /usr/sbin/aur.sh -si --noconfirm --needed cub'
+    su docker -c 'cd /home/docker/sandground; bash /usr/sbin/aur.sh -si --noconfirm --needed --skipchecksums cub'
 
 RUN cd /home/docker/sandground && \
     wget https://aur.archlinux.org/cgit/aur.git/snapshot/nccl.tar.gz -O nccl.tar.gz && \
