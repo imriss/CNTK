@@ -7,10 +7,10 @@ MAINTAINER Reza Farrahi <imriss@ieee.org>
 LABEL description="CNTK CPUOnly / Arch Linux"
 
 RUN  pacman -Syyu --noconfirm && \
-  pacman -S findutils nano vi --noconfirm && \
+  pacman -S findutils nano vi --noconfirm --needed && \
   pacman-db-upgrade && \
   export editor=nano && \
-  pacman -S --noconfirm systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac \
+  pacman -S --noconfirm --needed systemd python python-yaml wget python-pip openssh git curl jq yajl perl expac \
   gcc gcc-libs clang && \
   pip install --upgrade pip && \
   pip install simplejson
@@ -24,30 +24,30 @@ RUN chmod u+x /usr/sbin/add-aur
 RUN export "PATH=/usr/bin/core_perl:$PATH" && \
   add-aur docker
 
-RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm base-devel expect cmake gcc-fortran \
+RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm --needed base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
     subversion apr apr-util serf m4 jdk7-openjdk openmpi python2-mpi4py libzip opencv openblas-lapack boost boost-libs swig \
     anaconda swig gcc5 '
     
 # RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
 
-RUN export "PATH=/usr/bin/core_perl:$PATH" && \
-    cd /home/docker/sandground && \
-    su docker -c 'mkdir kaldi' && cd kaldi && echo `ls -la` && \
-    wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && su docker -c 'tar -xvf kaldi.tar.gz' && cd kaldi && \
-    sed -i "s,cd \$srcdir\/\$pkgname\/tools,export CXXFLAGS=\"\$(printf '%s' \"\$CXXFLAGS\" | sed 's/-fno-plt//')\"\
-"$"\n        cd \$srcdir\/\$pkgname\/tools,g" PKGBUILD && \
-    sed -i "s,cd \$srcdir\/\$pkgname,cd \$srcdir\/\$pkgnamefull,g" PKGBUILD && \
-    sed -i "s,cd \"\${pkgname}\",cd \"\${pkgnamefull}\",g" PKGBUILD && \
-    sed -i "s,pkgname='kaldi',pkgname='kaldi'\
-    "$"\npkgnamefull='kaldi-c024e8aa0a727bf76c91a318f76a1f8b0b59249e'\
-    "$"\nKALDI_VERSION='c024e8aa',g" PKGBUILD && \
-    sed -i "s,source=(\"\${pkgname}::git+\${url}\",\
-source=(\"https:\/\/github.com\/kaldi-asr\/kaldi\/archive\/\$KALDI_VERSION.tar.gz\",g" PKGBUILD && \
-  sed -i 's~check_dependencies\.sh~check_dependencies\.sh\n        sed -i "s,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk\\ \
-\\n\\tfind \. -type f | xargs sed -i  \\'\''s\/-fno-plt\/\/\\'\'',g" Makefile~g' PKGBUILD && \
-    su docker -c 'makepkg -si' && \
-    pacman -U --noconfirm kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
+# RUN export "PATH=/usr/bin/core_perl:$PATH" && \
+#     cd /home/docker/sandground && \
+#     su docker -c 'mkdir kaldi' && cd kaldi && echo `ls -la` && \
+#     wget https://aur.archlinux.org/cgit/aur.git/snapshot/kaldi.tar.gz && su docker -c 'tar -xvf kaldi.tar.gz' && cd kaldi && \
+#     sed -i "s,cd \$srcdir\/\$pkgname\/tools,export CXXFLAGS=\"\$(printf '%s' \"\$CXXFLAGS\" | sed 's/-fno-plt//')\"\
+# "$"\n        cd \$srcdir\/\$pkgname\/tools,g" PKGBUILD && \
+#     sed -i "s,cd \$srcdir\/\$pkgname,cd \$srcdir\/\$pkgnamefull,g" PKGBUILD && \
+#     sed -i "s,cd \"\${pkgname}\",cd \"\${pkgnamefull}\",g" PKGBUILD && \
+#     sed -i "s,pkgname='kaldi',pkgname='kaldi'\
+#     "$"\npkgnamefull='kaldi-c024e8aa0a727bf76c91a318f76a1f8b0b59249e'\
+#     "$"\nKALDI_VERSION='c024e8aa',g" PKGBUILD && \
+#     sed -i "s,source=(\"\${pkgname}::git+\${url}\",\
+# source=(\"https:\/\/github.com\/kaldi-asr\/kaldi\/archive\/\$KALDI_VERSION.tar.gz\",g" PKGBUILD && \
+#   sed -i 's~check_dependencies\.sh~check_dependencies\.sh\n        sed -i "s,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk,rm -rf sctk \\\&\\\& ln -s sctk-2\.4\.9 sctk\\ \
+# \\n\\tfind \. -type f | xargs sed -i  \\'\''s\/-fno-plt\/\/\\'\'',g" Makefile~g' PKGBUILD && \
+#     su docker -c 'makepkg -si' && \
+#     pacman -U --noconfirm kaldi-5.2.r7528.5e91c5d2e-1-x86_64.pkg.tar
     
 # ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/lib/openmpi/:$LD_LIBRARY_PATH
