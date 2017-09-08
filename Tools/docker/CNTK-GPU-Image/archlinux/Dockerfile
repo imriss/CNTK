@@ -35,7 +35,7 @@ RUN cd /home/docker/sandground && \
     su docker -c 'tar -xvf nccl.tar.gz'
 COPY nccl_2.0.5-2-cuda8.0_amd64.txz /home/docker/sandground/nccl
 RUN cd /home/docker/sandground/nccl && \
-    su docker -c 'makepkg -si'
+    su docker -c 'makepkg -si --noconfirm'
     
 # RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm kaldi '
 
