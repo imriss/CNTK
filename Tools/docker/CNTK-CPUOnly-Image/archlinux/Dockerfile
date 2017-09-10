@@ -21,9 +21,10 @@ ADD ./aur.sh /usr/sbin/aur.sh
 ADD ./add-aur.sh /usr/sbin/add-aur
 RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
-RUN add-aur docker
+RUN export "PATH=/usr/bin/core_perl:$PATH" && \
+    add-aur docker
 
-# RUN export "PATH=/usr/bin/core_perl:$PATH" && \
+
 
 RUN su docker -c 'pacaur -S --noprogressbar --noedit --noconfirm --needed base-devel expect cmake gcc-fortran \
     ffmpeg jasper libjpeg-turbo libpng lapacke libtiff protobuf python-protobuf unzip automake libtool autoconf \
