@@ -80,6 +80,7 @@ RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     sed -i "s,libprotobuf.a,libprotobuf.so,g" configure && \
     sed -i "s,QWordVal qval = valQ.Quantize,QWordVal qval = valQ.template Quantize,g" Source/Math/ColumnQuantizer.h && \
     sed -i "s,libmpi.so.12,libmpi.so,g" bindings/python/cntk/train/distributed.py && \
+    sed -i "s,#include <cstddef>,#include <cstddef>\n#include <cmath>,g" Source/CNTKv2LibraryDll/API/CNTKLibrary.h && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
