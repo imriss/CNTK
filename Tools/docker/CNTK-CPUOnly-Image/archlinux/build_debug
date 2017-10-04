@@ -1,0 +1,2 @@
+
+sudo docker build --rm=false --squash --tag imriss/cntk_cpu_archlinux:v2 .
