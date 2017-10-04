@@ -83,7 +83,7 @@ RUN CONFIGURE_OPTS="--with-py36-path=/opt/anaconda/envs/cntk-py36" && \
     mkdir -p build-mkl/cpu/release && \
     cd build-mkl/cpu/release && \
     ../../../configure $CONFIGURE_OPTS --with-mkl=/usr/local/CNTKCustomMKL && \
-    make -j"$(nproc)" all
+    make -j1 all
     
     # cd ../../.. && \    
     # mkdir -p build/cpu/release && \
